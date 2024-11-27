@@ -40,3 +40,46 @@ private:
 	string heading;
 };
 
+
+// sets the heading to the string given in the param as s
+void Missile::setHeading(string s) {
+	heading = s;
+}
+
+
+// sets the latitude and longitude to where the missile currently is
+void Missile::setLocation(double lon, double lat) {
+	latitude = lat;
+	longitude = lon;
+}
+
+
+// sets the speed in mph based on the param s
+void Missile::setSpeed(double s) {
+	speed = s;
+}
+
+
+// returns the speed value from the missile
+double Missile::getSpeed() {
+	return speed;
+}
+
+
+// returns the latitude position
+double Missile::getLatitude() {
+	return latitude;
+}
+
+
+// returns the longitude position
+double Missile::getLongitude() {
+	return longitude;
+}
+
+
+// returns the heading(N, E, S, W, NS, NW, SE, SW)
+string Missile::getHeading() {
+	return heading;
+}
+
