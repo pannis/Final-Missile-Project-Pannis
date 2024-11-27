@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="antiMissileLauncher.cpp" />
     <ClCompile Include="Final Project Pannis.cpp" />
     <ClCompile Include="Missile.cpp" />
   </ItemGroup>
