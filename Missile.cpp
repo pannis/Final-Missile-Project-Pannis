@@ -26,6 +26,13 @@ public:
 	// gets the current latitude of the missile
 	double getLatitude();
 
+	// initiates a missile launch from a latitude and longitude at a set speed and heading
+	void missleLaunched(double lat, double lon, double s, string head);
+
+	// will set speed and heading to zero as the missile has succesfully been taken down
+	// will probably print location that it went down
+	void missileDown();
+
 private:
 	// records the speed in mph
 	double speed;
