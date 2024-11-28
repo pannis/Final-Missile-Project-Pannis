@@ -22,7 +22,7 @@ public:
 	void fire(int volley, int degreesFromNorth, int altitude);
 
 	// sets the max range
-	void setRange();
+	void setRange(int yards);
 
 	// reloads the ammo
 	void reload();
@@ -51,3 +51,43 @@ private:
 };
 
 
+// gets the range in yards of how far this aml can fire
+int antiMissileLauncher::getRange() {
+	return range;
+}
+
+// gets the current ammo count of the aml
+int antiMissileLauncher::getAmmo() {
+	return currentAmmo;
+}
+
+
+// gets the ammo cap
+int antiMissileLauncher::getCap() {
+	return ammoCap;
+}
+
+// gets the speed that the aml can fire a volley
+double antiMissileLauncher::getVolley() {
+	return volley;
+}
+
+// sets the max ammo the launcher can have
+void antiMissileLauncher::setAmmoMax(int n) {
+	ammoCap = n;
+}
+
+// sets the max range that the launcher can have
+void antiMissileLauncher::setRange(int yards) {
+	range = yards;
+}
+
+// sets the speed that the aml can fire
+void antiMissileLauncher::setVolley(double v) {
+	volley = v;
+}
+
+// fills the currentAmmo back to the ammo cap
+void antiMissileLauncher::reload() {
+	currentAmmo = ammoCap;
+}
