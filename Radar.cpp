@@ -31,6 +31,12 @@ public:
 	// gets the current ping place
 	int getCurrent();
 
+	// will send a detected missile to the targeting system
+	void sendToTargeting();
+
+	// will be used to print that a missile has been detected
+	void notify();
+
 private:
 
 	// the latitude that the radar is placed
