@@ -131,6 +131,7 @@
     <ClCompile Include="Final Project Pannis.cpp" />
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Radar.cpp" />
+    <ClCompile Include="Targeting.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
