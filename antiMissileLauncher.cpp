@@ -30,6 +30,12 @@ public:
 	// sets the max ammo
 	void setAmmoMax(int n);
 
+	// sets the volley velocity
+	void setVolley(double v);
+
+	// gets the volley velocity
+	double getVolley();
+
 private:
 	// the furthest the aml can fire
 	int range;
@@ -39,6 +45,9 @@ private:
 
 	// the current ammo
 	int currentAmmo;
+
+	// the speed the aml can fire
+	double volley;
 };
 
 
