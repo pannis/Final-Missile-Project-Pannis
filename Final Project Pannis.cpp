@@ -1,5 +1,5 @@
 // Final Project Pannis.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// will use this to handle all prints to the command line based on what the rest does
 
 #include <iostream>
 
