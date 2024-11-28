@@ -16,8 +16,21 @@ public:
 	// sets the radius in yards for what the radar covers
 	void setRadius(int n);
 
-	// sets the currentDegree that teh radar is pinging
+	// sets the currentDegree that the radar is pinging
 	void setCurrent(int n);
+
+	// gets the lat
+	int getLat();
+
+	// gets the long
+	int getLong();
+
+	// gets the radius
+	int getRad();
+
+	// gets the current ping place
+	int getCurrent();
+
 private:
 
 	// the latitude that the radar is placed
@@ -51,4 +64,25 @@ void Radar::setRadius(int n) {
 // sets the currentDegree that teh radar is pinging
 void Radar::setCurrent(int n) {
 	currentDegree = n;
+}
+
+
+// gets the lat
+int Radar::getLat() {
+	return latitude;
+}
+
+// gets the long
+int Radar::getLong() {
+	return longitude;
+}
+
+// gets the radius
+int Radar::getRad() {
+	return yardsCovered;
+}
+
+// gets the current ping place
+int Radar::getCurrent() {
+	return currentDegree;
 }
