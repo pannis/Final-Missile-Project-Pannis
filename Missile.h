@@ -7,6 +7,9 @@ using namespace std;
 class Missile {
 
 private:
+	// for labelin the missile
+	string label;
+	
 	// records the speed in mph
 	double speed;
 
@@ -24,6 +27,16 @@ private:
 
 
 public:
+	// create a missile (to be used with the file)
+	Missile(string l, double s, double lon, double lat, string h, bool f) {
+		label = l;
+		speed = s;
+		longitude = lon;
+		latitude = lat;
+		heading = h;
+		seen = f;
+	}
+
 	/* sets the current heading of a missile */
 	void setHeading(string h);
 
@@ -58,5 +71,12 @@ public:
 
 	// gets the seen value
 	bool getSeen();
+
+	
+	// get the name of a missile
+	string getName();
+
+	// set the name of a missile
+	void setName(string s);
 
 };

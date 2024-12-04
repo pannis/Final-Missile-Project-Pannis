@@ -39,8 +39,15 @@ public:
 	// sets if the missile has been seen or not
 	void setSeen(bool didSee);
 
+	// get the name of a missile
+	string getName();
+
+	// set the name of a missile
+	void setName(string s);
+
 	// create a missile (to be used with the file)
-	Missile(double s, double lon, double lat, string h, bool f) {
+	Missile(string l, double s, double lon, double lat, string h, bool f) {
+		label = l;
 		speed = s;
 		longitude = lon;
 		latitude = lat;
@@ -49,6 +56,9 @@ public:
 	}
 
 private:
+	// label for the missile
+	string label;
+	
 	// records the speed in mph
 	double speed;
 
@@ -118,5 +128,15 @@ bool Missile::getSeen() {
 // sets the seen value
 void Missile::setSeen(bool didSee) {
 	seen = didSee;
+}
+
+// get the name of a missile
+string Missile::getName() {
+	return label;
+}
+
+// set the name of a missile
+void Missile::setName(string s) {
+	label = s;
 }
 

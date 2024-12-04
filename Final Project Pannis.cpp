@@ -30,6 +30,8 @@ int main()
     ifstream mFile;
     mFile.open(fileName);
     
+    // while loop to put in missiles until limiter
+    
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
