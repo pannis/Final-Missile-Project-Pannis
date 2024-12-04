@@ -33,6 +33,12 @@ public:
 	// will probably print location that it went down
 	void missileDown();
 
+	// gets if the missile has been seen or not
+	bool getSeen();
+
+	// sets if the missile has been seen or not
+	void setSeen(bool didSee);
+
 private:
 	// records the speed in mph
 	double speed;
@@ -45,6 +51,9 @@ private:
 
 	//holds the heading in a string
 	string heading;
+
+	// if a missile has been spotted already
+	bool seen;
 };
 
 
@@ -88,5 +97,17 @@ double Missile::getLongitude() {
 // returns the heading(N, E, S, W, NS, NW, SE, SW)
 string Missile::getHeading() {
 	return heading;
+}
+
+
+// gets the seen value
+bool Missile::getSeen() {
+	return seen;
+}
+
+
+// sets the seen value
+void Missile::setSeen(bool didSee) {
+	seen = didSee;
 }
 

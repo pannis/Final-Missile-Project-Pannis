@@ -19,6 +19,9 @@ private:
 	//holds the heading in a string
 	string heading;
 
+	// for if its been seen or not
+	bool seen;
+
 
 public:
 	/* sets the current heading of a missile */
@@ -48,5 +51,12 @@ public:
 	// will set speed and heading to zero as the missile has succesfully been taken down
 	// will probably print location that it went down
 	void missileDown();
+
+
+	// sets the seen value
+	void setSeen(bool didSee);
+
+	// gets the seen value
+	bool getSeen();
 
 };
