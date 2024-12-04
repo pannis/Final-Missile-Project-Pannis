@@ -2,12 +2,23 @@
 // will use this to handle all prints to the command line based on what the rest does
 
 #include <iostream>
+#include <string>
 #include "Missile.h"
 using namespace std;
 
 int main()
 {
-    cout << "No missiles allowed here!";
+    // Just some welcome stuff to customize user experience
+    cout << "Welcome to our Missile Defense System tm \n" << endl << "Please enter your name for a personalized user experience: ";
+    string userIn;
+    cin >> userIn;
+
+    string userName = userIn;
+
+    cout << endl << endl << endl << "Welcome " + userName + ", thank you for choosing us as your defense system." << endl <<
+        "We look forward to assisting you in all your anti-missile needs!" << endl;
+
+    
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

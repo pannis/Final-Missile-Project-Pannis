@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include "Missile.h"
+#include <vector>
 using namespace std;
 
 
@@ -50,6 +52,9 @@ private:
 
 	// the current degree in the radius that is being pinged
 	int currentDegree;
+
+	// so the radar knows if it has been spotted already
+	bool 
 };
 
 // sets the latitude of the radar
