@@ -31,6 +31,50 @@ int main()
     mFile.open(fileName);
     
     // while loop to put in missiles until limiter
+    string fileLine = "";
+    
+    // this loads in the file to some temp values and creates a missile object out of it
+    while (true) {
+
+        // first part is just formatting file into proper types
+        string tempName;
+        getline(mFile, tempName);
+        
+        if (tempName.compare("---") == 0) {
+            break;
+        }
+        string tempLat;
+        getline(mFile, tempLat);
+        double dLat = stod(tempLat);
+
+        string tempLon;
+        getline(mFile, tempLon);
+        double dLon = stod(tempLon);
+
+
+        string tempSpeed;
+        getline(mFile, tempSpeed);
+        double dSpeed = stod(tempSpeed);
+
+        string tempHeading;
+        getline(mFile, tempHeading);
+
+        string tempSeen;
+        getline(mFile, tempSeen);
+        bool bSeen;
+        if (tempSeen.compare("false") == 0) {
+            bSeen = false;
+        }
+        else {
+            bSeen = true;
+        }
+
+
+        for (int i = 0; i < 6; i++) {
+                    
+        }
+
+    }
     
 }
 
