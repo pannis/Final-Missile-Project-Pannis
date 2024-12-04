@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "Missile.h"
 using namespace std;
 
@@ -18,6 +19,16 @@ int main()
     cout << endl << endl << endl << "Welcome " + userName + ", thank you for choosing us as your defense system." << endl <<
         "We look forward to assisting you in all your anti-missile needs!" << endl;
 
+
+
+    // retrieves the file from the user
+    cout << "Please provide the input file for where you are recieving your missile data: ";
+    cin >> userIn;
+    string fileName = userIn;
+
+    // the missile load file functions
+    ifstream mFile;
+    mFile.open(fileName);
     
 }
 

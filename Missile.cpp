@@ -39,6 +39,15 @@ public:
 	// sets if the missile has been seen or not
 	void setSeen(bool didSee);
 
+	// create a missile (to be used with the file)
+	Missile(double s, double lon, double lat, string h, bool f) {
+		speed = s;
+		longitude = lon;
+		latitude = lat;
+		heading = h;
+		seen = f;
+	}
+
 private:
 	// records the speed in mph
 	double speed;
