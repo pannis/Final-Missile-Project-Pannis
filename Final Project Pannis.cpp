@@ -2,10 +2,12 @@
 // will use this to handle all prints to the command line based on what the rest does
 
 #include <iostream>
+#include "Missile.h"
+using namespace std;
 
 int main()
 {
-    std::cout << "No missiles allowed here!";
+    cout << "No missiles allowed here!";
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

@@ -133,6 +133,9 @@
     <ClCompile Include="Radar.cpp" />
     <ClCompile Include="Targeting.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Missile.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
