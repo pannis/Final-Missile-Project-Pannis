@@ -134,6 +134,7 @@
     <ClCompile Include="Targeting.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header.h" />
     <ClInclude Include="Missile.h" />
   </ItemGroup>
   <ItemGroup>
