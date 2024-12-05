@@ -7,6 +7,26 @@
 #include "Missile.h"
 using namespace std;
 
+void spawnMissile() {
+    srand(5);
+    double headCheck = rand() % 4 + 1;
+    string head;
+    if (headCheck == 0) {
+        head = "N";
+    }
+    else if (headCheck == 1) {
+        head = "S";
+    }
+    else if (headCheck == 2) {
+        head = "E";
+    }
+    else {
+        head = "W";
+    }
+    Missile("missile", 7, rand() % 100, rand() % 100, head, false);
+
+}
+
 int main()
 {
     // Just some welcome stuff to customize user experience
@@ -36,45 +56,7 @@ int main()
     // this loads in the file to some temp values and creates a missile object out of it
     while (true) {
 
-        // first part is just formatting file into proper types
-        string tempName;
-        getline(mFile, tempName);
-        
-        if (tempName.compare("---") == 0) {
-            break;
-        }
-        string tempLat;
-        getline(mFile, tempLat);
-        double dLat = stod(tempLat);
-
-        string tempLon;
-        getline(mFile, tempLon);
-        double dLon = stod(tempLon);
-
-
-        string tempSpeed;
-        getline(mFile, tempSpeed);
-        double dSpeed = stod(tempSpeed);
-
-        string tempHeading;
-        getline(mFile, tempHeading);
-
-        string tempSeen;
-        getline(mFile, tempSeen);
-        bool bSeen;
-        if (tempSeen.compare("false") == 0) {
-            bSeen = false;
-        }
-        else {
-            bSeen = true;
-        }
-
-
-        Missile tempLoad(tempName, dSpeed, dLon, dLat, tempHeading, bSeen);
-
-        cout << tempLoad.getName();
-
-    }
+       
     
 }
 

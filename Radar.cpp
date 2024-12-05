@@ -2,6 +2,7 @@
 #include <string>
 #include "Missile.h"
 #include <vector>
+#include <cstdlib>
 using namespace std;
 
 
@@ -39,6 +40,8 @@ public:
 	// will be used to print that a missile has been detected
 	void notify();
 
+	// create and add missile to vector
+	void spawnMissile();
 private:
 
 	// the latitude that the radar is placed
@@ -52,6 +55,9 @@ private:
 
 	// the current degree in the radius that is being pinged
 	int currentDegree;
+	
+	// vector of missiles
+	vector<Missile> incoming;
 
 };
 
@@ -94,4 +100,25 @@ int Radar::getRad() {
 // gets the current ping place
 int Radar::getCurrent() {
 	return currentDegree;
+}
+
+void Radar::spawnMissile() {
+	srand(5);
+	double headCheck = rand() % 4;
+	string head;
+	if (headCheck == 0) {
+		head = "N";
+	}
+	else if (headCheck == 1) {
+		head = "S";
+	}
+	else if (headCheck == 2) {
+		head = "E";
+	}
+	else {
+		head = "W";
+	}
+	Missile tMissile("missile", 7, rand() % 100, rand() % 100, head, false);
+	incoming.push_back(tMissile);
+
 }
