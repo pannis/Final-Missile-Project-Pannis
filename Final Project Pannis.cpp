@@ -43,15 +43,6 @@ int main()
 
 
 
-    // retrieves the file from the user
-    cout << "Please provide the input file for where you are recieving your missile data: ";
-    cin >> userIn;
-    string fileName = userIn;
-
-    // the missile load file functions
-    ifstream mFile;
-    mFile.open(fileName);
-
     // while loop to put in missiles until limiter
     string fileLine = "";
 
@@ -59,7 +50,7 @@ int main()
     Radar r;
 
     // this loads in the file to some temp values and creates a missile object out of it
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 14; i++) {
         r.spawnMissile();
     }
 
