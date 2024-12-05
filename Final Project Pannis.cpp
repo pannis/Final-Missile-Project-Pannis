@@ -4,7 +4,9 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <cstdlib>
 #include "Missile.h"
+#include "Radar.h"
 using namespace std;
 
 void spawnMissile() {
@@ -49,17 +51,20 @@ int main()
     // the missile load file functions
     ifstream mFile;
     mFile.open(fileName);
-    
+
     // while loop to put in missiles until limiter
     string fileLine = "";
-    
+
+    //create a radar
+    Radar r;
+
     // this loads in the file to some temp values and creates a missile object out of it
-    while (true) {
+    for (int i = 0; i < 5; i++) {
+        r.spawnMissile();
+    }
 
-       
-    
+    cout << "There are currently " << r.getIncoming() << " missiles in the airspace!" << endl;
 }
-
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 

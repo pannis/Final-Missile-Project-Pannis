@@ -10,7 +10,7 @@ using namespace std;
 // detects when a missile is in the airspace (will send it to the targeting system)
 class Radar {
 public:
-
+	Radar();
 	// sets the latitude of the radar
 	void setLat(int n);
 
@@ -43,6 +43,8 @@ public:
 
 	// create and add missile to vector
 	void spawnMissile();
+
+	int getIncoming();
 private:
 
 	// the latitude that the radar is placed
