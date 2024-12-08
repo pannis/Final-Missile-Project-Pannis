@@ -9,7 +9,7 @@
 #include "Radar.h"
 using namespace std;
 
-void spawnMissile() {
+static void spawnMissile() {
     srand(5);
     double headCheck = rand() % 4 + 1;
     string head;
@@ -43,18 +43,18 @@ int main()
 
 
 
-    // while loop to put in missiles until limiter
-    string fileLine = "";
 
     //create a radar
     Radar r;
+    while (1) {
 
     // this loads in the file to some temp values and creates a missile object out of it
-    for (int i = 0; i < 14; i++) {
-        r.spawnMissile();
-    }
+        for (int i = 0; i < 14; i++) {
+            r.spawnMissile();
+        }
 
     cout << "There are currently " << r.getIncoming() << " missiles in the airspace!" << endl;
+    }
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
