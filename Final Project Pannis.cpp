@@ -66,9 +66,9 @@ int main()
 
     //create a radar
     Radar r;
-    int count = 1;
-    while (count) {
-        count = 0;
+    int count = 0;
+    while (count < 5) {
+        count++;
         // this loads in the file to some temp values and creates a missile object out of it
         for (int i = 0; i < 14; i++) {
             Missile* temp = spawnMissile();
@@ -79,11 +79,13 @@ int main()
         cout << "\n\n" << endl;
 
         // currently displays missile information for all missiles in the sky
-        vector<Missile> temp = r.getMissiles();
+        vector<Missile*> temp = r.getMissiles();
         for (int j = 0; j < r.getIncoming(); j++) {
-            cout << "There is one missile at " << temp[j].getLatitude() << ", " << temp[j].getLongitude() << " and it is heading " <<
-                temp[j].getHeading() << " at a speed of " << temp[j].getSpeed() << endl;
+            cout << "There is one missile at " << temp[j]->getLatitude() << ", " << temp[j]->getLongitude() << " and it is heading " <<
+                temp[j]->getHeading() << " at a speed of " << temp[j]->getSpeed() << endl;
+            temp[j]->move();
         }
+        cout << "\n\n\n\n\n";
     }
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

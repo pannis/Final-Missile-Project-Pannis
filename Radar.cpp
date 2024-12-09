@@ -48,7 +48,7 @@ public:
 	int getIncoming();
 
 	// returns the vector of missiles
-	vector<Missile> getMissiles();
+	vector<Missile*> getMissiles();
 private:
 
 	// the latitude that the radar is placed
@@ -64,7 +64,7 @@ private:
 	int currentDegree;
 	
 	// vector of missiles
-	vector<Missile> incoming;
+	vector<Missile*> incoming;
 
 };
 
@@ -122,13 +122,13 @@ int Radar::getIncoming() {
 }
 
 //returns the vector of missiles
-vector<Missile> Radar::getMissiles() {
+vector<Missile*> Radar::getMissiles() {
 	return incoming;
 }
 
 
 //takes a pointer to a missile and pushes it to the incoming vec
 void Radar::spawnMissile(Missile* m) {
-	incoming.push_back(*m);
+	incoming.push_back(m);
 
 }
