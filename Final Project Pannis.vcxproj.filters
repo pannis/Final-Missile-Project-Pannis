@@ -44,6 +44,12 @@
     <ClInclude Include="Volley.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="antiMissileLauncher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="loader.txt" />

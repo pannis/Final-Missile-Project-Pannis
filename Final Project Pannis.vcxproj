@@ -135,7 +135,9 @@
     <ClCompile Include="Volley.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="antiMissileLauncher.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="Header1.h" />
     <ClInclude Include="Missile.h" />
     <ClInclude Include="Volley.h" />
   </ItemGroup>
