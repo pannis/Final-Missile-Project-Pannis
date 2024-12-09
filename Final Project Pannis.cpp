@@ -74,15 +74,32 @@ int main()
             Missile* temp = spawnMissile();
             r.spawnMissile(temp);
         }
+        vector<Missile*> temp = r.getMissiles();
+        // loop to set what is seen in current iteration
+        int amountSeen = 0;
+        for (int seer = 0; seer < r.getIncoming(); seer++) {
+            if (temp[seer]->getLatitude() < 75 && temp[seer]->getLongitude() < 75 && temp[seer]->getLatitude() > 25 && temp[seer]->getLongitude() > 25) {
+                temp[seer]->setSeen(true);
+                amountSeen++;
+            }
+            else {
+                // remove seen status each time if it leaves
+                temp[seer]->setSeen(false);
+            }
+        }
+  
         // tells you how many missiles are in the air
-        cout << "There are currently " << r.getIncoming() << " missiles in the airspace!" << endl;
+        cout << "There are currently " << amountSeen << " missiles in the airspace!" << endl;
         cout << "\n\n" << endl;
 
         // currently displays missile information for all missiles in the sky
-        vector<Missile*> temp = r.getMissiles();
+
         for (int j = 0; j < r.getIncoming(); j++) {
-            cout << "There is one missile at " << temp[j]->getLatitude() << ", " << temp[j]->getLongitude() << " and it is heading " <<
-                temp[j]->getHeading() << " at a speed of " << temp[j]->getSpeed() << endl;
+            // show only seen
+            if (temp[j]->getSeen() == true) {
+                cout << "There is one missile at " << temp[j]->getLatitude() << ", " << temp[j]->getLongitude() << " and it is heading " <<
+                    temp[j]->getHeading() << " at a speed of " << temp[j]->getSpeed() << endl;
+            }
             temp[j]->move();
         }
         // checks if the value goes outside our 100x100 grid if so remove
