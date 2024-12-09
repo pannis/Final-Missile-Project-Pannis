@@ -13,6 +13,9 @@ public:
 	Volley(int s, double la, double lo, double dla, double dlo);
 	void move();
 	bool hitCheck();
+
+	//sets the target of the volley
+	void setTar(Missile* m);
 private:
 	int speed;
 	double lat;
@@ -24,4 +27,7 @@ private:
 	// 1 = above
 	int atLat;
 	int atLon;
+
+	// will be the target of the volley
+	Missile* target;
 };

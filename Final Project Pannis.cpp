@@ -72,16 +72,18 @@ int main()
     int numBarrages;
     cin >> numBarrages;
 
-    // create the four defenses
-    // one for each quadrant
-    antiMissileLauncher* a1 = new antiMissileLauncher(62, 62, 25, 10);
-    antiMissileLauncher* a2 = new antiMissileLauncher(62, 37, 25, 10);
-    antiMissileLauncher* a3 = new antiMissileLauncher(37, 37, 25, 10);
-    antiMissileLauncher* a4 = new antiMissileLauncher(37, 62, 25, 10);
-
-
     //create a radar
     Radar r;
+
+    // create the four defenses
+    // one for each quadrant
+    antiMissileLauncher* a1 = new antiMissileLauncher(62, 62, 25, 10, &r);
+    antiMissileLauncher* a2 = new antiMissileLauncher(62, 37, 25, 10, &r);
+    antiMissileLauncher* a3 = new antiMissileLauncher(37, 37, 25, 10, &r);
+    antiMissileLauncher* a4 = new antiMissileLauncher(37, 62, 25, 10, &r);
+
+
+    
     int count = 0;
     while (count < numBarrages) {
         count++;

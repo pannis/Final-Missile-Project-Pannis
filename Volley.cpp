@@ -42,6 +42,9 @@ public:
 	
 	// checks if the volley has hit the target
 	bool hitCheck();
+
+	//sets the target of the volley
+	void setTar(Missile* m);
 private:
 	int speed;
 	double lat;
@@ -53,6 +56,8 @@ private:
 	// 1 = above
 	int atLat;
 	int atLon;
+	// will be the target of the volley
+	Missile* target;
 };
 
 //checks if the volley has hit
@@ -63,6 +68,11 @@ bool Volley::hitCheck() {
 	else {
 		return false;
 	}
+}
+
+//sets the target of the volley
+void Volley::setTar(Missile* m) {
+	target = m;
 }
 
 // moves the volley based on a destination and prints a message boom when it gets there

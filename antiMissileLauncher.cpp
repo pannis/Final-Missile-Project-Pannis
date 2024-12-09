@@ -2,6 +2,8 @@
 #include <string>
 #include "Volley.h"
 #include <vector>
+#include "Radar.h"
+
 using namespace std;
 
 
@@ -12,7 +14,7 @@ class antiMissileLauncher {
 public:
 
 	// constructor
-	antiMissileLauncher(int lo, int la, int a, double s);
+	antiMissileLauncher(int lo, int la, int a, double s, Radar* r);
 	// gets the range of the aml
 	int getRange();
 
@@ -24,7 +26,7 @@ public:
 
 	// fires shots at the missile decreasing the ammo amount
 	// the next two params are where it fires
-	void fire(double dLon, double dLat);
+	bool fire(double dLon, double dLat);
 
 	// sets the max range
 	void setRange(int yards);
@@ -40,6 +42,10 @@ public:
 
 	// gets the volley velocity
 	double getVolley();
+
+	//checks how many hits this time
+	int checkHits();
+
 
 
 
@@ -65,19 +71,21 @@ private:
 	//vector of all the volly fired
 	vector<Volley*> vols;
 
-	//checks how many hits this time
-	int checkHits();
+	// the radar
+	Radar* rad;
+	
 
 };
 
 
-antiMissileLauncher::antiMissileLauncher(int lo, int la, int a, double s){
+antiMissileLauncher::antiMissileLauncher(int lo, int la, int a, double s, Radar* r){
 	lon = lo;
 	lat = la;
 	range = 25;
 	currentAmmo = a;
 	ammoCap = a;
 	volley = s;
+	rad = r;
 }
 
 
@@ -122,24 +130,34 @@ void antiMissileLauncher::reload() {
 	currentAmmo = ammoCap;
 }
 
+
+//checks if it hit and prints/counts
 int antiMissileLauncher::checkHits() {
 	int hits = 0;
 	for (int v = 0; v < vols.size(); v++) {
-		if(vols[v])
+		if (vols[v]->hitCheck() == true) {
+			hits++;
+		}
 	}
+
+
+
+	cout << hits << " Missiles have been shot down!" << endl;
 }
 
 
 //fires a volley or reloads and prints message of what is happening
-void antiMissileLauncher::fire(double dLon, double dLat) {
+bool antiMissileLauncher::fire(double dLon, double dLat) {
 	if (currentAmmo > 0) {
 		cout << "\nVolley Fired from AML at " << lat << ", " << lon << "!" << endl;
 		Volley* tempV = new Volley(volley, lat, lon, dLat, dLon);
 		vols.push_back(tempV);
 		currentAmmo--;
+		return true;
 	}
 	else {
 		reload();
 		cout << "\nAML RELOADED\n" << endl;
+		return false;
 	}
 }

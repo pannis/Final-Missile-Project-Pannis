@@ -12,7 +12,7 @@ using namespace std;
 class antiMissileLauncher {
 public:
 	// constructor
-	antiMissileLauncher(int lo, int la, int a, double s);
+	antiMissileLauncher(int lo, int la, int a, double s, Radar* r);
 	
 	// gets the range of the aml
 	int getRange();
@@ -25,7 +25,7 @@ public:
 
 	// fires shots at the missile decreasing the ammo amount
 	// the next two params are where it fires
-	void fire(double dLon, double dLat);
+	bool fire(double dLon, double dLat);
 
 	// sets the max range
 	void setRange(int yards);
