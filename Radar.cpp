@@ -42,9 +42,13 @@ public:
 	void notify();
 
 	// create and add missile to vector
-	void spawnMissile();
+	void spawnMissile(Missile* m);
 
+	// returns the size of incoming vector
 	int getIncoming();
+
+	// returns the vector of missiles
+	vector<Missile> getMissiles();
 private:
 
 	// the latitude that the radar is placed
@@ -112,27 +116,19 @@ int Radar::getCurrent() {
 	return currentDegree;
 }
 
+//returns the size of the vector
 int Radar::getIncoming() {
 	return incoming.size();
 }
 
-void Radar::spawnMissile() {
-	srand(5);
-	double headCheck = rand() % 4;
-	string head;
-	if (headCheck == 0) {
-		head = "N";
-	}
-	else if (headCheck == 1) {
-		head = "S";
-	}
-	else if (headCheck == 2) {
-		head = "E";
-	}
-	else {
-		head = "W";
-	}
-	Missile tMissile("missile", 7, rand() % 100, rand() % 100, head, false);
-	incoming.push_back(tMissile);
+//returns the vector of missiles
+vector<Missile> Radar::getMissiles() {
+	return incoming;
+}
+
+
+//takes a pointer to a missile and pushes it to the incoming vec
+void Radar::spawnMissile(Missile* m) {
+	incoming.push_back(*m);
 
 }

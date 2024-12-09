@@ -42,9 +42,12 @@ public:
 	void notify();
 
 	// create and add missile to vector
-	void spawnMissile();
+	void spawnMissile(Missile* m);
 
 	int getIncoming();
+
+	// returns the vector of missiles
+	vector<Missile> getMissiles();
 private:
 
 	// the latitude that the radar is placed

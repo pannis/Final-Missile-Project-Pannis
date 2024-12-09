@@ -7,17 +7,32 @@
 #include <cstdlib>
 #include "Missile.h"
 #include "Radar.h"
+#include <ctime>
 using namespace std;
 
-static void spawnMissile() {
-    srand(5);
-    double headCheck = rand() % 4 + 1;
+
+// creates a pointer to a missile object based on a random value
+Missile* spawnMissile() {
+    // this part checks which way the missile is heading
+    int headCheck = rand() % 9;
     string head;
     if (headCheck == 0) {
         head = "N";
     }
+    else if (headCheck == 3) {
+        head = "NE";
+    }
+    else if (headCheck == 4) {
+        head = "NW";
+    }
     else if (headCheck == 1) {
         head = "S";
+    }
+    else if (headCheck == 5) {
+        head = "SE";
+    }
+    else if (headCheck == 6) {
+        head = "SW";
     }
     else if (headCheck == 2) {
         head = "E";
@@ -25,12 +40,17 @@ static void spawnMissile() {
     else {
         head = "W";
     }
-    Missile("missile", 7, rand() % 100, rand() % 100, head, false);
+
+    // creates the actual missile and returns
+    Missile* tempM = new Missile("missile", 7, rand() % 100, rand() % 100, head, false);
+    return tempM;
 
 }
 
 int main()
 {
+    // sets the random value used to create missiles down the road based on time
+    srand(time(0));
     // Just some welcome stuff to customize user experience
     cout << "Welcome to our Missile Defense System tm \n" << endl << "Please enter your name for a personalized user experience: ";
     string userIn;
@@ -46,14 +66,24 @@ int main()
 
     //create a radar
     Radar r;
-    while (1) {
-
-    // this loads in the file to some temp values and creates a missile object out of it
+    int count = 1;
+    while (count) {
+        count = 0;
+        // this loads in the file to some temp values and creates a missile object out of it
         for (int i = 0; i < 14; i++) {
-            r.spawnMissile();
+            Missile* temp = spawnMissile();
+            r.spawnMissile(temp);
         }
+        // tells you how many missiles are in the air
+        cout << "There are currently " << r.getIncoming() << " missiles in the airspace!" << endl;
+        cout << "\n\n" << endl;
 
-    cout << "There are currently " << r.getIncoming() << " missiles in the airspace!" << endl;
+        // currently displays missile information for all missiles in the sky
+        vector<Missile> temp = r.getMissiles();
+        for (int j = 0; j < r.getIncoming(); j++) {
+            cout << "There is one missile at " << temp[j].getLatitude() << ", " << temp[j].getLongitude() << " and it is heading " <<
+                temp[j].getHeading() << " at a speed of " << temp[j].getSpeed() << endl;
+        }
     }
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
