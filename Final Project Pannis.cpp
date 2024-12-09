@@ -85,6 +85,7 @@ int main()
                 temp[j]->getHeading() << " at a speed of " << temp[j]->getSpeed() << endl;
             temp[j]->move();
         }
+        // checks if the value goes outside our 100x100 grid if so remove
         for (int outCheck = 0; outCheck < temp.size();) {
             if (temp[outCheck]->getLatitude() < 0 || temp[outCheck]->getLongitude() < 0 || temp[outCheck]->getLatitude() > 100 || temp[outCheck]->getLongitude() > 100) {
                 temp.erase(temp.begin() + outCheck);
@@ -93,7 +94,10 @@ int main()
                 outCheck += 1;
             }
         }
+        // uses setMissiles to set incoming to our temp vec
         r.setMissiles(temp);
+
+        //just some lines for testing and readability
         cout << "\n\n\n\n\n";
     }
 }
