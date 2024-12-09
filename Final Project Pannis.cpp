@@ -122,27 +122,38 @@ int main()
         }
         // checks if the value goes outside our 100x100 grid if so remove
         for (int outCheck = 0; outCheck < temp.size();) {
+
+            //outside the grid
             if (temp[outCheck]->getLatitude() < 0 || temp[outCheck]->getLongitude() < 0 || temp[outCheck]->getLatitude() > 100 || temp[outCheck]->getLongitude() > 100) {
                 temp.erase(temp.begin() + outCheck);
             }
+
+            // quad1
             else if (temp[outCheck]->getSeen() == true && temp[outCheck]->getLatitude() > 50) {
                 if (temp[outCheck]->getLongitude() > 50) {
                     cout << "AML1 firing..." << endl;
                     a1->fire(temp[outCheck]);
                     temp.erase(temp.begin() + outCheck);
                 }
+
+                //quad 4
                 else if (temp[outCheck]->getLongitude() < 50) {
                     cout << "AML4 firing..." << endl;
                     a4->fire(temp[outCheck]);
                     temp.erase(temp.begin() + outCheck);
                 }
             }
+
+            
             else if (temp[outCheck]->getSeen() == true && temp[outCheck]->getLatitude() < 50) {
+                
+                //quad 2
                 if (temp[outCheck]->getLongitude() > 50) {
                     cout << "AML2 firing..." << endl;
                     a2->fire(temp[outCheck]);
                     temp.erase(temp.begin() + outCheck);
                 }
+                // quad 3
                 else if (temp[outCheck]->getLongitude() < 50) {
                     cout << "AML3 firing..." << endl;
                     a3->fire(temp[outCheck]);
