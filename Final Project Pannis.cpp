@@ -61,116 +61,117 @@ int main()
 
     cout << endl << endl << endl << "Welcome " + userName + ", thank you for choosing us as your defense system." << endl <<
         "We look forward to assisting you in all your anti-missile needs!" << endl;
+    while (1) {
+        //get the amount of missiles that we will be defending against each barrage
+        cout << userName << " how many missiles are we defending from right now?" << endl;
+        int barrage;
+        cin >> barrage;
 
-    //get the amount of missiles that we will be defending against each barrage
-    cout << userName << " how many missiles are we defending from right now?" << endl;
-    int barrage;
-    cin >> barrage;
+        // get the amount of barrages the user would like to simulate
+        cout << "Ok, " << userName << ", how many barrages would you like to simulate?" << endl;
+        int numBarrages;
+        cin >> numBarrages;
 
-    // get the amount of barrages the user would like to simulate
-    cout << "Ok, " << userName << ", how many barrages would you like to simulate?" << endl;
-    int numBarrages;
-    cin >> numBarrages;
+        //create a radar
+        Radar r;
 
-    //create a radar
-    Radar r;
-
-    // create the four defenses
-    // one for each quadrant
-    antiMissileLauncher* a1 = new antiMissileLauncher(62, 62, 25, 10, &r);
-    antiMissileLauncher* a2 = new antiMissileLauncher(62, 37, 25, 10, &r);
-    antiMissileLauncher* a3 = new antiMissileLauncher(37, 37, 25, 10, &r);
-    antiMissileLauncher* a4 = new antiMissileLauncher(37, 62, 25, 10, &r);
+        // create the four defenses
+        // one for each quadrant
+        antiMissileLauncher* a1 = new antiMissileLauncher(62, 62, 25, 10, &r);
+        antiMissileLauncher* a2 = new antiMissileLauncher(62, 37, 25, 10, &r);
+        antiMissileLauncher* a3 = new antiMissileLauncher(37, 37, 25, 10, &r);
+        antiMissileLauncher* a4 = new antiMissileLauncher(37, 62, 25, 10, &r);
 
 
-    
-    int count = 0;
-    while (count < numBarrages) {
-        count++;
-        // this loads in the file to some temp values and creates a missile object out of it
-        for (int i = 0; i < barrage; i++) {
-            Missile* temp = spawnMissile();
-            r.spawnMissile(temp);
-        }
-        vector<Missile*> temp = r.getMissiles();
-        // loop to set what is seen in current iteration
-        int amountSeen = 0;
-        for (int seer = 0; seer < r.getIncoming(); seer++) {
-            if (temp[seer]->getLatitude() < 75 && temp[seer]->getLongitude() < 75 && temp[seer]->getLatitude() > 25 && temp[seer]->getLongitude() > 25) {
-                temp[seer]->setSeen(true);
-                amountSeen++;
+
+        int count = 0;
+        while (count < numBarrages) {
+            count++;
+            // this loads in the file to some temp values and creates a missile object out of it
+            for (int i = 0; i < barrage; i++) {
+                Missile* temp = spawnMissile();
+                r.spawnMissile(temp);
             }
-            else {
-                // remove seen status each time if it leaves
-                temp[seer]->setSeen(false);
-            }
-        }
-  
-        // tells you how many missiles are in the air
-        cout << "There are currently " << amountSeen << " missiles in the airspace!" << endl;
-        cout << "\n\n" << endl;
-
-        // currently displays missile information for all missiles in the sky
-        int counter = 0;
-        for (int j = 0; j < r.getIncoming(); j++) {
-            // show only seen
-            if (temp[j]->getSeen() == true) {
-                cout << "There is one missile at " << temp[j]->getLatitude() << ", " << temp[j]->getLongitude() << " and it is heading " <<
-                    temp[j]->getHeading() << " at a speed of " << temp[j]->getSpeed() << endl;
-                
-            }
-        }
-        // checks if the value goes outside our 100x100 grid if so remove
-        for (int outCheck = 0; outCheck < temp.size();) {
-
-            //outside the grid
-            if (temp[outCheck]->getLatitude() < 0 || temp[outCheck]->getLongitude() < 0 || temp[outCheck]->getLatitude() > 100 || temp[outCheck]->getLongitude() > 100) {
-                temp.erase(temp.begin() + outCheck);
-            }
-
-            // quad1
-            else if (temp[outCheck]->getSeen() == true && temp[outCheck]->getLatitude() > 50) {
-                if (temp[outCheck]->getLongitude() > 50) {
-                    cout << "AML1 firing..." << endl;
-                    a1->fire(temp[outCheck]);
-                    temp.erase(temp.begin() + outCheck);
+            vector<Missile*> temp = r.getMissiles();
+            // loop to set what is seen in current iteration
+            int amountSeen = 0;
+            for (int seer = 0; seer < r.getIncoming(); seer++) {
+                if (temp[seer]->getLatitude() < 75 && temp[seer]->getLongitude() < 75 && temp[seer]->getLatitude() > 25 && temp[seer]->getLongitude() > 25) {
+                    temp[seer]->setSeen(true);
+                    amountSeen++;
                 }
-
-                //quad 4
-                else if (temp[outCheck]->getLongitude() < 50) {
-                    cout << "AML4 firing..." << endl;
-                    a4->fire(temp[outCheck]);
-                    temp.erase(temp.begin() + outCheck);
+                else {
+                    // remove seen status each time if it leaves
+                    temp[seer]->setSeen(false);
                 }
             }
 
-            
-            else if (temp[outCheck]->getSeen() == true && temp[outCheck]->getLatitude() < 50) {
-                
-                //quad 2
-                if (temp[outCheck]->getLongitude() > 50) {
-                    cout << "AML2 firing..." << endl;
-                    a2->fire(temp[outCheck]);
-                    temp.erase(temp.begin() + outCheck);
-                }
-                // quad 3
-                else if (temp[outCheck]->getLongitude() < 50) {
-                    cout << "AML3 firing..." << endl;
-                    a3->fire(temp[outCheck]);
-                    temp.erase(temp.begin() + outCheck);
+            // tells you how many missiles are in the air
+            cout << "There are currently " << amountSeen << " missiles in the airspace!" << endl;
+            cout << "\n\n" << endl;
+
+            // currently displays missile information for all missiles in the sky
+            int counter = 0;
+            for (int j = 0; j < r.getIncoming(); j++) {
+                // show only seen
+                if (temp[j]->getSeen() == true) {
+                    cout << "There is one missile at " << temp[j]->getLatitude() << ", " << temp[j]->getLongitude() << " and it is heading " <<
+                        temp[j]->getHeading() << " at a speed of " << temp[j]->getSpeed() << endl;
+
                 }
             }
-            else {
-                outCheck += 1;
+            // checks if the value goes outside our 100x100 grid if so remove
+            for (int outCheck = 0; outCheck < temp.size();) {
+
+                //outside the grid
+                if (temp[outCheck]->getLatitude() < 0 || temp[outCheck]->getLongitude() < 0 || temp[outCheck]->getLatitude() > 100 || temp[outCheck]->getLongitude() > 100) {
+                    temp.erase(temp.begin() + outCheck);
+                }
+
+                // quad1
+                else if (temp[outCheck]->getSeen() == true && temp[outCheck]->getLatitude() > 50) {
+                    if (temp[outCheck]->getLongitude() > 50) {
+                        cout << "AML1 firing..." << endl;
+                        a1->fire(temp[outCheck]);
+                        temp.erase(temp.begin() + outCheck);
+                    }
+
+                    //quad 4
+                    else if (temp[outCheck]->getLongitude() < 50) {
+                        cout << "AML4 firing..." << endl;
+                        a4->fire(temp[outCheck]);
+                        temp.erase(temp.begin() + outCheck);
+                    }
+                }
+
+
+                else if (temp[outCheck]->getSeen() == true && temp[outCheck]->getLatitude() < 50) {
+
+                    //quad 2
+                    if (temp[outCheck]->getLongitude() > 50) {
+                        cout << "AML2 firing..." << endl;
+                        a2->fire(temp[outCheck]);
+                        temp.erase(temp.begin() + outCheck);
+                    }
+                    // quad 3
+                    else if (temp[outCheck]->getLongitude() < 50) {
+                        cout << "AML3 firing..." << endl;
+                        a3->fire(temp[outCheck]);
+                        temp.erase(temp.begin() + outCheck);
+                    }
+                }
+                else {
+                    outCheck += 1;
+                }
             }
+            // uses setMissiles to set incoming to our temp vec
+            r.setMissiles(temp);
+
+            //just some lines for testing and readability
+            cout << "\n\n\n\n\n";
+
+
         }
-        // uses setMissiles to set incoming to our temp vec
-        r.setMissiles(temp);
-
-        //just some lines for testing and readability
-        cout << "\n\n\n\n\n";
-        
-
     }
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
