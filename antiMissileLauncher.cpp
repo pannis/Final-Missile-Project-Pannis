@@ -43,8 +43,6 @@ public:
 	// gets the volley velocity
 	double getVolley();
 
-	//checks how many hits this time
-	int checkHits();
 
 
 
@@ -128,14 +126,9 @@ void antiMissileLauncher::reload() {
 }
 
 
-//checks if it hit and prints/counts
-int antiMissileLauncher::checkHits() {
-	
-}
-
 
 //fires a volley or reloads and prints message of what is happening
 void antiMissileLauncher::fire(Missile* t) {
 	Volley* v = new Volley(volley, lat, lon, t);
-
+	v->shootDown();
 }

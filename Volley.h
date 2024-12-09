@@ -20,8 +20,6 @@ public:
 	// moves the lon
 	void moveLon();
 
-	// checks if the volley has hit the target
-	bool hitCheck();
 
 	//sets the target of the volley
 	void setTar(Missile* m);

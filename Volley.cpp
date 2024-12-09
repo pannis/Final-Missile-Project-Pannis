@@ -19,8 +19,6 @@ public:
 	// moves the lon
 	void moveLon();
 	
-	// checks if the volley has hit the target
-	bool hitCheck();
 
 	//sets the target of the volley
 	void setTar(Missile* m);
@@ -35,13 +33,17 @@ private:
 	double lat;
 	double lon;
 	Missile* target;
+	bool latDone;
+	bool lonDone;
 };
 
 Volley::Volley(int s, double la, double lo, Missile* t) {
-	int speed = s;
-	double lat = la;
-	double lon = lo;
-	Missile* target = t;
+	speed = s;
+	lat = la;
+	lon = lo;
+	target = t;
+	latDone = false;
+	lonDone - false;
 }
 
 
@@ -87,12 +89,16 @@ void Volley::shootDown() {
 // moves the volley based on a destination and prints a message boom when it gets there
 // destination will be calculated by the aml
 bool Volley::move() {
-	if (abs(lat - target->getLatitude()) > 15) {
+	if (abs(lat - target->getLatitude() && latDone != true) > 15) {
 		moveLat();
 		return false;
 	}
 	else if (abs(lon - target->getLongitude()) > 15) {
+		latDone = true;
 		moveLon();
+		if (abs(lon - target->getLongitude() > 15)) {
+			return true;
+		}
 		return false;
 	}
 	else {

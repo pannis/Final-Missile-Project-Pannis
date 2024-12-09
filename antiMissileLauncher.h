@@ -4,6 +4,7 @@
 #include "Volley.h"
 #include <vector>
 #include "Radar.h"
+
 using namespace std;
 
 
@@ -12,9 +13,9 @@ using namespace std;
 // class for the systems firing at the missiles
 class antiMissileLauncher {
 public:
+
 	// constructor
 	antiMissileLauncher(int lo, int la, int a, double s, Radar* r);
-	
 	// gets the range of the aml
 	int getRange();
 
@@ -26,7 +27,7 @@ public:
 
 	// fires shots at the missile decreasing the ammo amount
 	// the next two params are where it fires
-	bool fire(double dLon, double dLat, Missile* t);
+	void fire(Missile* t);
 
 	// sets the max range
 	void setRange(int yards);
@@ -42,9 +43,6 @@ public:
 
 	// gets the volley velocity
 	double getVolley();
-
-	//checks how many hits this time
-	int checkHits();
 
 
 
@@ -63,7 +61,14 @@ private:
 	// the speed the aml can fire
 	double volley;
 
-	//vector of all the volly fired
-	vector<Volley> vols;
+	//lat of the aml
+	int lat;
+
+	//lon of the aml
+	int lon;
+
+	// the radar
+	Radar* rad;
+
 
 };
