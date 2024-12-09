@@ -37,7 +37,11 @@ public:
 			atLon = 0;
 		}
 	}
+	// moves the volley
 	void move();
+	
+	// checks if the volley has hit the target
+	bool hitCheck();
 private:
 	int speed;
 	double lat;
@@ -51,7 +55,15 @@ private:
 	int atLon;
 };
 
-
+//checks if the volley has hit
+bool Volley::hitCheck() {
+	if (atLon == 0 && atLat == 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 
 // moves the volley based on a destination and prints a message boom when it gets there
 // destination will be calculated by the aml

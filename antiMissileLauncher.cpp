@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include "Volley.h"
+#include <vector>
 using namespace std;
 
 
@@ -22,7 +24,7 @@ public:
 
 	// fires shots at the missile decreasing the ammo amount
 	// the next two params are where it fires
-	void fire(int volley, int degreesFromNorth, int altitude);
+	void fire(double dLon, double dLat);
 
 	// sets the max range
 	void setRange(int yards);
@@ -59,6 +61,12 @@ private:
 
 	//lon of the aml
 	int lon;
+	
+	//vector of all the volly fired
+	vector<Volley*> vols;
+
+	//checks how many hits this time
+	int checkHits();
 
 };
 
@@ -112,4 +120,26 @@ void antiMissileLauncher::setVolley(double v) {
 // fills the currentAmmo back to the ammo cap
 void antiMissileLauncher::reload() {
 	currentAmmo = ammoCap;
+}
+
+int antiMissileLauncher::checkHits() {
+	int hits = 0;
+	for (int v = 0; v < vols.size(); v++) {
+		if(vols[v])
+	}
+}
+
+
+//fires a volley or reloads and prints message of what is happening
+void antiMissileLauncher::fire(double dLon, double dLat) {
+	if (currentAmmo > 0) {
+		cout << "\nVolley Fired from AML at " << lat << ", " << lon << "!" << endl;
+		Volley* tempV = new Volley(volley, lat, lon, dLat, dLon);
+		vols.push_back(tempV);
+		currentAmmo--;
+	}
+	else {
+		reload();
+		cout << "\nAML RELOADED\n" << endl;
+	}
 }

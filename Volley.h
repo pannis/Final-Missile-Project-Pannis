@@ -12,6 +12,7 @@ class Volley {
 public:
 	Volley(int s, double la, double lo, double dla, double dlo);
 	void move();
+	bool hitCheck();
 private:
 	int speed;
 	double lat;

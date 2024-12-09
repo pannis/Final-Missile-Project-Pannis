@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "Volley.h"
+#include <vector>
 using namespace std;
 
 
@@ -23,7 +25,7 @@ public:
 
 	// fires shots at the missile decreasing the ammo amount
 	// the next two params are where it fires
-	void fire(int volley, int degreesFromNorth, int altitude);
+	void fire(double dLon, double dLat);
 
 	// sets the max range
 	void setRange(int yards);
@@ -40,6 +42,11 @@ public:
 	// gets the volley velocity
 	double getVolley();
 
+	//checks how many hits this time
+	int checkHits();
+
+
+
 
 
 private:
@@ -54,5 +61,8 @@ private:
 
 	// the speed the aml can fire
 	double volley;
+
+	//vector of all the volly fired
+	vector<Volley> vols;
 
 };
