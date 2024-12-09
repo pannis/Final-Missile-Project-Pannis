@@ -9,7 +9,7 @@ using namespace std;
 // gonna be used for the collision of projectile
 class Volley {
 public:
-	Volley(int s, double la, double lo, double dla, double dlo, Missile* t);
+	Volley(int s, double la, double lo, Missile* t);
 	// moves the volley
 	bool move();
 
@@ -34,45 +34,14 @@ private:
 	int speed;
 	double lat;
 	double lon;
-	double destLat;
-	double destLon;
-	// 0 = at the correct one
-	// -1 = less than correct
-	// 1 = above
-	int atLat;
-	int atLon;
-	// will be the target of the volley
 	Missile* target;
 };
 
-Volley::Volley(int s, double la, double lo, double dla, double dlo, Missile* t) {
+Volley::Volley(int s, double la, double lo, Missile* t) {
 	int speed = s;
 	double lat = la;
 	double lon = lo;
-	double destLat = dla;
-	double destLon = dlo;
 	Missile* target = t;
-	// sets the atLat value
-	if (lat < destLat) {
-		atLat = -1;
-	}
-	else if (lat > destLat) {
-		atLat = 1;
-	}
-	else {
-		atLat = 0;
-	}
-
-	// sets the atLon value
-	if (lon < destLon) {
-		atLon = -1;
-	}
-	else if (lon > destLon) {
-		atLon = 1;
-	}
-	else {
-		atLon = 0;
-	}
 }
 
 
@@ -101,15 +70,6 @@ Missile* Volley::getTarget() {
 	return target;
 }
 
-//checks if the volley has hit
-bool Volley::hitCheck() {
-	if (atLon == 0 && atLat == 0) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
 
 //sets the target of the volley
 void Volley::setTar(Missile* m) {
@@ -121,7 +81,7 @@ void Volley::shootDown() {
 	while (!move()) {
 		cout << "Missile Tracking..." << endl;
 	}
-	cout << "Shot down" << endl;
+	cout << "Shot down!" << endl;
 }
 
 // moves the volley based on a destination and prints a message boom when it gets there

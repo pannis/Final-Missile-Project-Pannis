@@ -10,7 +10,7 @@ using namespace std;
 // gonna be used for the collision of projectile
 class Volley {
 public:
-	Volley(int s, double la, double lo, double dla, double dlo, Missile* t);
+	Volley(int s, double la, double lo, Missile* t);
 	// moves the volley
 	bool move();
 
@@ -35,13 +35,5 @@ private:
 	int speed;
 	double lat;
 	double lon;
-	double destLat;
-	double destLon;
-	// 0 = at the correct one
-	// -1 = less than correct
-	// 1 = above
-	int atLat;
-	int atLon;
-	// will be the target of the volley
 	Missile* target;
 };

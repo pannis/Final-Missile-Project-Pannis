@@ -26,7 +26,7 @@ public:
 
 	// fires shots at the missile decreasing the ammo amount
 	// the next two params are where it fires
-	bool fire(double dLon, double dLat, Missile* t);
+	void fire(Missile* t);
 
 	// sets the max range
 	void setRange(int yards);
@@ -67,9 +67,6 @@ private:
 
 	//lon of the aml
 	int lon;
-	
-	//vector of all the volly fired
-	vector<Volley*> vols;
 
 	// the radar
 	Radar* rad;
@@ -138,6 +135,7 @@ int antiMissileLauncher::checkHits() {
 
 
 //fires a volley or reloads and prints message of what is happening
-bool antiMissileLauncher::fire(double dLon, double dLat, Missile* t) {
-	
+void antiMissileLauncher::fire(Missile* t) {
+	Volley* v = new Volley(volley, lat, lon, t);
+
 }
