@@ -49,6 +49,9 @@ public:
 
 	// returns the vector of missiles
 	vector<Missile*> getMissiles();
+
+	// sets the missiles
+	void setMissiles(vector<Missile*> m);
 private:
 
 	// the latitude that the radar is placed
@@ -131,4 +134,8 @@ vector<Missile*> Radar::getMissiles() {
 void Radar::spawnMissile(Missile* m) {
 	incoming.push_back(m);
 
+}
+
+void Radar::setMissiles(vector<Missile*> m) {
+	incoming = m;
 }

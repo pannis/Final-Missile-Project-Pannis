@@ -70,7 +70,7 @@ int main()
     while (count < 5) {
         count++;
         // this loads in the file to some temp values and creates a missile object out of it
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 5; i++) {
             Missile* temp = spawnMissile();
             r.spawnMissile(temp);
         }
@@ -85,6 +85,15 @@ int main()
                 temp[j]->getHeading() << " at a speed of " << temp[j]->getSpeed() << endl;
             temp[j]->move();
         }
+        for (int outCheck = 0; outCheck < temp.size();) {
+            if (temp[outCheck]->getLatitude() < 0 || temp[outCheck]->getLongitude() < 0 || temp[outCheck]->getLatitude() > 100 || temp[outCheck]->getLongitude() > 100) {
+                temp.erase(temp.begin() + outCheck);
+            }
+            else {
+                outCheck += 1;
+            }
+        }
+        r.setMissiles(temp);
         cout << "\n\n\n\n\n";
     }
 }

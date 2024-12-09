@@ -48,6 +48,9 @@ public:
 
 	// returns the vector of missiles
 	vector<Missile*> getMissiles();
+	
+	// sets the missiles
+	void setMissiles(vector<Missile*> m);
 private:
 
 	// the latitude that the radar is placed
