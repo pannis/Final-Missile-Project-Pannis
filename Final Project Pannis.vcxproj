@@ -132,10 +132,12 @@
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Radar.cpp" />
     <ClCompile Include="Targeting.cpp" />
+    <ClCompile Include="Volley.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header.h" />
     <ClInclude Include="Missile.h" />
+    <ClInclude Include="Volley.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="loader.txt" />

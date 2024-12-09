@@ -30,12 +30,18 @@
     <ClCompile Include="Targeting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Volley.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Missile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Volley.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

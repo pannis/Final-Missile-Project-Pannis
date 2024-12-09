@@ -9,49 +9,49 @@ using namespace std;
 // gonna be used for the collision of projectile
 class Volley {
 public:
-	Volley(int s, double la, double lo);
+	Volley(int s, double la, double lo, double dla, double dlo) {
+		int speed = s;
+		double lat = la;
+		double lon = lo;
+		double destLat = dla;
+		double destLon = dlo;
+		// sets the atLat value
+		if (lat < destLat) {
+			atLat = -1;
+		}
+		else if (lat > destLat) {
+			atLat = 1;
+		}
+		else {
+			atLat = 0;
+		}
+
+		// sets the atLon value
+		if (lon < destLon) {
+			atLon = -1;
+		}
+		else if (lon > destLon) {
+			atLon = 1;
+		}
+		else {
+			atLon = 0;
+		}
+	}
 	void move();
 private:
 	int speed;
 	double lat;
 	double lon;
 	double destLat;
-	double destLot;
+	double destLon;
 	// 0 = at the correct one
 	// -1 = less than correct
 	// 1 = above
 	int atLat;
 	int atLon;
-}
+};
 
-Volley::Volley(int s, double la, double lo, double dla, double dlo) {
-	int speed = s;
-	double lat = la;
-	double lon = lo;
-	double destLat = dla;
-	double destLot = dlo;
-	// sets the atLat value
-	if (lat < destLat) {
-		atLat = -1;
-	}
-	else if (lat > destLat) {
-		atLat = 1;
-	}
-	else {
-		atLat = 0;
-	}
 
-	// sets the atLon value
-	if (lon < destLon) {
-		atLon = -1;
-	}
-	else if (lon > destLon) {
-		atLon = 1;
-	}
-	else {
-		atLon = 0;
-	}
-}
 
 // moves the volley based on a destination and prints a message boom when it gets there
 // destination will be calculated by the aml
