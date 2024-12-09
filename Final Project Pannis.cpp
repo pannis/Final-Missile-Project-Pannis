@@ -62,6 +62,16 @@ int main()
     cout << endl << endl << endl << "Welcome " + userName + ", thank you for choosing us as your defense system." << endl <<
         "We look forward to assisting you in all your anti-missile needs!" << endl;
 
+    //get the amount of missiles that we will be defending against each barrage
+    cout << userName << " how many missiles are we defending from right now?" << endl;
+    int barrage;
+    cin >> barrage;
+
+    // get the amount of barrages the user would like to simulate
+    cout << "Ok, " << userName << ", how many barrages would you like to simulate?" << endl;
+    int numBarrages;
+    cin >> numBarrages;
+
     // create the four defenses
     // one for each quadrant
     antiMissileLauncher* a1 = new antiMissileLauncher(62, 62, 25, 10);
@@ -73,10 +83,10 @@ int main()
     //create a radar
     Radar r;
     int count = 0;
-    while (count < 5) {
+    while (count < numBarrages) {
         count++;
         // this loads in the file to some temp values and creates a missile object out of it
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < barrage; i++) {
             Missile* temp = spawnMissile();
             r.spawnMissile(temp);
         }
