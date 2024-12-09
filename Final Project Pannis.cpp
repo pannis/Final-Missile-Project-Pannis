@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include "Missile.h"
 #include "Radar.h"
+#include "antiMissileLauncher.h"
 #include <ctime>
 using namespace std;
 
@@ -61,7 +62,12 @@ int main()
     cout << endl << endl << endl << "Welcome " + userName + ", thank you for choosing us as your defense system." << endl <<
         "We look forward to assisting you in all your anti-missile needs!" << endl;
 
-
+    // create the four defenses
+    // one for each quadrant
+    antiMissileLauncher* a1 = new antiMissileLauncher(62, 62, 25, 10);
+    antiMissileLauncher* a2 = new antiMissileLauncher(62, 37, 25, 10);
+    antiMissileLauncher* a3 = new antiMissileLauncher(37, 37, 25, 10);
+    antiMissileLauncher* a4 = new antiMissileLauncher(37, 62, 25, 10);
 
 
     //create a radar
