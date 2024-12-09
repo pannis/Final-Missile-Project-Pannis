@@ -8,6 +8,9 @@ using namespace std;
 // class for the systems firing at the missiles
 class antiMissileLauncher {
 public:
+
+	// constructor
+	antiMissileLauncher(int lo, int la, int a, double s);
 	// gets the range of the aml
 	int getRange();
 
@@ -48,8 +51,23 @@ private:
 
 	// the speed the aml can fire
 	double volley;
+
+	//lat of the aml
+	int lat;
+
+	//lon of the aml
+	int lon;
 };
 
+
+antiMissileLauncher::antiMissileLauncher(int lo, int la, int a, double s){
+	lon = lo;
+	lat = la;
+	range = 25;
+	currentAmmo = a;
+	ammoCap = a;
+	volley = s;
+}
 
 // gets the range in yards of how far this aml can fire
 int antiMissileLauncher::getRange() {

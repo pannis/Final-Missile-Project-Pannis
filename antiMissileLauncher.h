@@ -9,6 +9,9 @@ using namespace std;
 // class for the systems firing at the missiles
 class antiMissileLauncher {
 public:
+	// constructor
+	antiMissileLauncher(int lo, int la, int a, double s);
+	
 	// gets the range of the aml
 	int getRange();
 
