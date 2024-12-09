@@ -134,6 +134,29 @@ int main()
 
         //just some lines for testing and readability
         cout << "\n\n\n\n\n";
+
+        //time to get rid of the missiles
+        while (r.getIncoming() > 0) {
+            vector<Missile*> temp = r.getMissiles();
+            if (temp[0]->getLatitude() > 50) {
+                if (temp[0]->getLongitude() > 50) {
+                    a1->fire(temp[0]->getLongitude() + 7, temp[0]->getLatitude() + 7, temp[0]);
+                }
+                else {
+                    a4->fire(temp[0]->getLongitude() + 7, temp[0]->getLatitude() + 7, temp[0]);
+                }
+            }
+            else if (temp[0]->getLatitude() <= 50) {
+                if (temp[0]->getLongitude() > 50) {
+                    a2->fire(temp[0]->getLongitude() + 7, temp[0]->getLatitude() + 7, temp[0]);
+                }
+                else {
+                    a3->fire(temp[0]->getLongitude() + 7, temp[0]->getLatitude() + 7, temp[0]);
+                }
+            }
+            r.setMissiles(temp);
+        }
+
     }
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
