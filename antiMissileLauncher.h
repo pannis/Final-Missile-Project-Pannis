@@ -40,11 +40,7 @@ public:
 	// gets the volley velocity
 	double getVolley();
 
-	// sets the firing status
-	void setFiring(bool tf);
 
-	// gets the firing status
-	bool getFiring();
 
 private:
 	// the furthest the aml can fire
@@ -59,6 +55,4 @@ private:
 	// the speed the aml can fire
 	double volley;
 
-	// tells you if it is currently firing
-	bool firing;
 };
