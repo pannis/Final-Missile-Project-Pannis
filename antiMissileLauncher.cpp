@@ -39,6 +39,12 @@ public:
 	// gets the volley velocity
 	double getVolley();
 
+	// sets the firing status
+	void setFiring(bool tf);
+
+	// gets the firing status
+	bool getFiring();
+
 private:
 	// the furthest the aml can fire
 	int range;
@@ -57,6 +63,9 @@ private:
 
 	//lon of the aml
 	int lon;
+
+	// tells you if it is currently firing
+	bool firing;
 };
 
 
@@ -67,6 +76,17 @@ antiMissileLauncher::antiMissileLauncher(int lo, int la, int a, double s){
 	currentAmmo = a;
 	ammoCap = a;
 	volley = s;
+}
+
+// gets the firing status
+bool antiMissileLauncher::getFiring() {
+	return firing;
+}
+
+
+// sets the current firing status
+void antiMissileLauncher::setFiring(bool tf) {
+	firing = tf;
 }
 
 // gets the range in yards of how far this aml can fire
