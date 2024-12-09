@@ -79,4 +79,7 @@ public:
 	// set the name of a missile
 	void setName(string s);
 
+	// handles movement for missile based on heading
+	void move();
+
 };

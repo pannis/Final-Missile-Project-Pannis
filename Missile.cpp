@@ -54,6 +54,8 @@ public:
 		heading = h;
 		seen = f;
 	}
+	// handles movement for missile based on heading
+	void move();
 
 private:
 	// label for the missile
@@ -140,3 +142,34 @@ void Missile::setName(string s) {
 	label = s;
 }
 
+// handles movement for the missile
+void Missile::move() {
+		if("N" == heading) {
+			longitude += speed;
+		}
+		else if ("S" == heading) {
+			longitude -= speed;
+		}
+		else if ("E" == heading) {
+			latitude += speed;
+		}
+		else if ("W" == heading) {
+			latitude -= speed;
+		}
+		else if ("NE" == heading) {
+			latitude += (speed / 2);
+			longitude += (speed / 2);
+		}
+		else if ("NW" == heading) {
+			latitude -= (speed / 2);
+			longitude += (speed / 2);
+		}
+		else if ("SE" == heading) {
+			latitude += (speed / 2);
+			longitude -= (speed / 2);
+		}
+		else if ("SW" == heading) {
+			latitude -= (speed / 2);
+			longitude -= (speed / 2);
+		}
+}
