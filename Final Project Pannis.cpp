@@ -111,14 +111,15 @@ int main()
         cout << "\n\n" << endl;
 
         // currently displays missile information for all missiles in the sky
-
+        int counter = 0;
         for (int j = 0; j < r.getIncoming(); j++) {
             // show only seen
             if (temp[j]->getSeen() == true) {
                 cout << "There is one missile at " << temp[j]->getLatitude() << ", " << temp[j]->getLongitude() << " and it is heading " <<
                     temp[j]->getHeading() << " at a speed of " << temp[j]->getSpeed() << endl;
+                //goes through each one individually shooting it down and adding to count
+
             }
-            temp[j]->move();
         }
         // checks if the value goes outside our 100x100 grid if so remove
         for (int outCheck = 0; outCheck < temp.size();) {
@@ -134,28 +135,7 @@ int main()
 
         //just some lines for testing and readability
         cout << "\n\n\n\n\n";
-
-        //time to get rid of the missiles
-        while (r.getIncoming() > 0) {
-            vector<Missile*> temp = r.getMissiles();
-            if (temp[0]->getLatitude() > 50) {
-                if (temp[0]->getLongitude() > 50) {
-                    a1->fire(temp[0]->getLongitude() + 7, temp[0]->getLatitude() + 7, temp[0]);
-                }
-                else {
-                    a4->fire(temp[0]->getLongitude() + 7, temp[0]->getLatitude() + 7, temp[0]);
-                }
-            }
-            else if (temp[0]->getLatitude() <= 50) {
-                if (temp[0]->getLongitude() > 50) {
-                    a2->fire(temp[0]->getLongitude() + 7, temp[0]->getLatitude() + 7, temp[0]);
-                }
-                else {
-                    a3->fire(temp[0]->getLongitude() + 7, temp[0]->getLatitude() + 7, temp[0]);
-                }
-            }
-            r.setMissiles(temp);
-        }
+        
 
     }
 }

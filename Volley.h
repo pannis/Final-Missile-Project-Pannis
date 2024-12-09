@@ -11,7 +11,16 @@ using namespace std;
 class Volley {
 public:
 	Volley(int s, double la, double lo, double dla, double dlo, Missile* t);
-	void move();
+	// moves the volley
+	bool move();
+
+	// moves the lat
+	void moveLat();
+
+	// moves the lon
+	void moveLon();
+
+	// checks if the volley has hit the target
 	bool hitCheck();
 
 	//sets the target of the volley
@@ -19,6 +28,9 @@ public:
 
 	//gets the target
 	Missile* getTarget();
+	//shoots down the missiles
+	void shootDown();
+
 private:
 	int speed;
 	double lat;
@@ -30,7 +42,6 @@ private:
 	// 1 = above
 	int atLat;
 	int atLon;
-
 	// will be the target of the volley
 	Missile* target;
 };

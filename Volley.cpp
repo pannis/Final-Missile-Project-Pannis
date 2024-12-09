@@ -11,7 +11,13 @@ class Volley {
 public:
 	Volley(int s, double la, double lo, double dla, double dlo, Missile* t);
 	// moves the volley
-	void move();
+	bool move();
+
+	// moves the lat
+	void moveLat();
+
+	// moves the lon
+	void moveLon();
 	
 	// checks if the volley has hit the target
 	bool hitCheck();
@@ -21,6 +27,9 @@ public:
 
 	//gets the target
 	Missile* getTarget();
+	//shoots down the missiles
+	void shootDown();
+
 private:
 	int speed;
 	double lat;
@@ -66,6 +75,27 @@ Volley::Volley(int s, double la, double lo, double dla, double dlo, Missile* t) 
 	}
 }
 
+
+//moves it laterally
+void Volley::moveLat() {
+	if (lat > target->getLatitude() + speed) {
+		lat -= speed;
+	}
+	else if (lat < target->getLatitude() - speed) {
+		lat += speed;
+	}
+}
+
+//moves the Longitude
+void Volley::moveLon() {
+	if (lon > target->getLongitude() + speed) {
+		lon -= speed;
+	}
+	else if (lon < target->getLongitude() - speed) {
+		lon += speed;
+	}
+}
+
 // gets the target
 Missile* Volley::getTarget() {
 	return target;
@@ -86,68 +116,27 @@ void Volley::setTar(Missile* m) {
 	target = m;
 }
 
+// shoots down the missiles
+void Volley::shootDown() {
+	while (!move()) {
+		cout << "Missile Tracking..." << endl;
+	}
+	cout << "Shot down" << endl;
+}
+
 // moves the volley based on a destination and prints a message boom when it gets there
 // destination will be calculated by the aml
-void Volley::move() {
-	// for the latitude values 
-	if (atLat != 0) {
-
-		// above the lat val
-		if (atLat == 1) {
-			if (lat - speed <= destLat) {
-				atLat = 0;
-				return;
-			}
-			else if (lat - speed > destLat) {
-				lat -= speed;
-				return;
-			}
-		}
-
-		// below the lat val
-		if (atLat == -1) {
-			if (lat + speed >= destLat) {
-				atLat = 0;
-				return;
-			}
-			else if (lat + speed < destLat) {
-				lat += speed;
-				return;
-			}
-		}
-		}
-
-	//for the lon values
-	if (atLon != 0) {
-
-		// above the lon vals
-		if (atLon == 1) {
-			if (lon - speed <= destLon) {
-				atLon = 0;
-				return;
-			}
-			else if (lon - speed > destLon) {
-				lon -= speed;
-				return;
-			}
-		}
-
-		// below the lon vals
-		if (atLon == -1) {
-			if (lon + speed >= destLon) {
-				atLon = 0;
-				return;
-			}
-			else if (lon + speed < destLon) {
-				lon += speed;
-				return;
-			}
-		}
+bool Volley::move() {
+	if (abs(lat - target->getLatitude()) > 15) {
+		moveLat();
+		return false;
 	}
-
-	// print message
+	else if (abs(lon - target->getLongitude()) > 15) {
+		moveLon();
+		return false;
+	}
 	else {
-		cout << "BOOM" << endl;
+		return true;
 	}
 
 }
