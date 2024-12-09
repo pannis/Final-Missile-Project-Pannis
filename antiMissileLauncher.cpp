@@ -26,7 +26,7 @@ public:
 
 	// fires shots at the missile decreasing the ammo amount
 	// the next two params are where it fires
-	bool fire(double dLon, double dLat);
+	bool fire(double dLon, double dLat, Missile* t);
 
 	// sets the max range
 	void setRange(int yards);
@@ -134,23 +134,28 @@ void antiMissileLauncher::reload() {
 //checks if it hit and prints/counts
 int antiMissileLauncher::checkHits() {
 	int hits = 0;
+	vector<Missile*> temp;
 	for (int v = 0; v < vols.size(); v++) {
 		if (vols[v]->hitCheck() == true) {
 			hits++;
 		}
+		else {
+			temp.push_back(vols[v]->getTarget());
+		}
+
 	}
-
-
+	rad->setMissiles(temp);
 
 	cout << hits << " Missiles have been shot down!" << endl;
+	return hits;
 }
 
 
 //fires a volley or reloads and prints message of what is happening
-bool antiMissileLauncher::fire(double dLon, double dLat) {
+bool antiMissileLauncher::fire(double dLon, double dLat, Missile* t) {
 	if (currentAmmo > 0) {
 		cout << "\nVolley Fired from AML at " << lat << ", " << lon << "!" << endl;
-		Volley* tempV = new Volley(volley, lat, lon, dLat, dLon);
+		Volley* tempV = new Volley(volley, lat, lon, dLat, dLon, t);
 		vols.push_back(tempV);
 		currentAmmo--;
 		return true;

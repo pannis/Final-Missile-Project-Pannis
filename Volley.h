@@ -10,12 +10,15 @@ using namespace std;
 // gonna be used for the collision of projectile
 class Volley {
 public:
-	Volley(int s, double la, double lo, double dla, double dlo);
+	Volley(int s, double la, double lo, double dla, double dlo, Missile* t);
 	void move();
 	bool hitCheck();
 
 	//sets the target of the volley
 	void setTar(Missile* m);
+
+	//gets the target
+	Missile* getTarget();
 private:
 	int speed;
 	double lat;

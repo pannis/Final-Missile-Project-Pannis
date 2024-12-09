@@ -3,6 +3,7 @@
 #include <string>
 #include "Volley.h"
 #include <vector>
+#include "Radar.h"
 using namespace std;
 
 
@@ -25,7 +26,7 @@ public:
 
 	// fires shots at the missile decreasing the ammo amount
 	// the next two params are where it fires
-	bool fire(double dLon, double dLat);
+	bool fire(double dLon, double dLat, Missile* t);
 
 	// sets the max range
 	void setRange(int yards);

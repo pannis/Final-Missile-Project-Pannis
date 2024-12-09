@@ -9,34 +9,7 @@ using namespace std;
 // gonna be used for the collision of projectile
 class Volley {
 public:
-	Volley(int s, double la, double lo, double dla, double dlo) {
-		int speed = s;
-		double lat = la;
-		double lon = lo;
-		double destLat = dla;
-		double destLon = dlo;
-		// sets the atLat value
-		if (lat < destLat) {
-			atLat = -1;
-		}
-		else if (lat > destLat) {
-			atLat = 1;
-		}
-		else {
-			atLat = 0;
-		}
-
-		// sets the atLon value
-		if (lon < destLon) {
-			atLon = -1;
-		}
-		else if (lon > destLon) {
-			atLon = 1;
-		}
-		else {
-			atLon = 0;
-		}
-	}
+	Volley(int s, double la, double lo, double dla, double dlo, Missile* t);
 	// moves the volley
 	void move();
 	
@@ -45,6 +18,9 @@ public:
 
 	//sets the target of the volley
 	void setTar(Missile* m);
+
+	//gets the target
+	Missile* getTarget();
 private:
 	int speed;
 	double lat;
@@ -59,6 +35,41 @@ private:
 	// will be the target of the volley
 	Missile* target;
 };
+
+Volley::Volley(int s, double la, double lo, double dla, double dlo, Missile* t) {
+	int speed = s;
+	double lat = la;
+	double lon = lo;
+	double destLat = dla;
+	double destLon = dlo;
+	Missile* target = t;
+	// sets the atLat value
+	if (lat < destLat) {
+		atLat = -1;
+	}
+	else if (lat > destLat) {
+		atLat = 1;
+	}
+	else {
+		atLat = 0;
+	}
+
+	// sets the atLon value
+	if (lon < destLon) {
+		atLon = -1;
+	}
+	else if (lon > destLon) {
+		atLon = 1;
+	}
+	else {
+		atLon = 0;
+	}
+}
+
+// gets the target
+Missile* Volley::getTarget() {
+	return target;
+}
 
 //checks if the volley has hit
 bool Volley::hitCheck() {
